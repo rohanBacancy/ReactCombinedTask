@@ -19,7 +19,7 @@ function Notes() {
 
   return (
     <>
-      <div className="container pt-3">
+      <div className="container pt-3" style={{backgroundColor:'#f2f5f9'}}>
         <div className="d-flex justify-content-between">
           <span>Search</span>
           <h1>Your Notes</h1>
