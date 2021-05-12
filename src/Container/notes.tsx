@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "reactstrap";
+import ListNotes from '../NotebookTask/Components/ListNotes';
 
 export interface Inotes {
   id: string;
@@ -10,10 +11,25 @@ export interface Inotes {
 
 function Notes() {
   const [notes, setNotes] = useState<Array<Inotes>>([]);
+  const [open,setOpen] = useState<boolean>(false);
+
+  const localstorageNoteRemover = (id:string) =>
+  {
+    //Function to remove note from local storage
+  }
+
+  const deleteHandler = (id:string) => {
+      setNotes(notes.filter(note => note.id !== id));
+  }
+
+  const editHandler = (id:string) => {
+      setOpen(true);
+      //Jinesh Edit note by id in the form
+  }
 
   useEffect(() => {
     let notes = localStorage.getItem("notes");
-    if (notes !== null) setNotes(JSON.parse(notes));
+    if (notes) setNotes(JSON.parse(notes));
   }, []);
 
   return (
@@ -33,6 +49,9 @@ function Notes() {
             <h5>Category</h5>
           </Col>
         </Row>
+        <div>
+        <ListNotes notes={notes} editHandler={editHandler} deleteHandler={deleteHandler}/>
+        </div>
       </div>
     </>
   );
