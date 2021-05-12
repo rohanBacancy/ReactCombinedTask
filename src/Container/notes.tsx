@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "reactstrap";
+import Category from "../Component/category";
 
 export interface Inotes {
   id: string;
@@ -31,6 +32,9 @@ function Notes() {
           </Col>
           <Col sm={2}>
             <h5>Category</h5>
+          </Col>
+          <Col sm={3}>
+            <Category setNotes={setNotes} />
           </Col>
         </Row>
       </div>
