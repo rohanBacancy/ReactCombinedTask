@@ -14,7 +14,7 @@ function Notes() {
 
   useEffect(() => {
     let notes = localStorage.getItem("notes");
-    if (notes !== null) setNotes(JSON.parse(notes));
+    if (notes) setNotes(JSON.parse(notes));
   }, []);
 
   return (
