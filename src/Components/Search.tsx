@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Input } from 'reactstrap'
+import {Inotes} from '../Container/notes';
 
 interface Props {
-    notes: string[]
+    notes: Inotes[]
 }
 
 const Search:React.FC<Props> = ({notes}) => {
 
     const [searchTerm, setSearchTerm] = useState("")
-    const [searchResults, setSearchResults] = useState<String[]>([]);
+    const [searchResults, setSearchResults] = useState<Array<Inotes>>([]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.target.value)
     }
 
     useEffect(() => {
-        const results = notes.filter(note => note.toLowerCase().includes(searchTerm))
+        const results = notes.filter(note => note.title.toLowerCase().includes(searchTerm))
         setSearchResults([...results])
     }, [searchTerm,notes])
 
