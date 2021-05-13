@@ -1,13 +1,7 @@
-import './App.css';
-import ModalComponent from './components/modal/Modal'
-import Form from "./components/Forms/AddNoteForm"
+import "./App.css";
+import Notes from "./Container/notes";
 
-const App = (): JSX.Element => {
-  return (
-    <div>
-      <h1> Main Page </h1>
-    </div>
-  )
+function App() {
+  return <Notes />;
 }
-
 export default App;
