@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "reactstrap";
+import Category from "../Component/category";
 import ListNotes from '../NotebookTask/Components/ListNotes';
 
 export interface Inotes {
@@ -34,7 +35,7 @@ function Notes() {
 
   return (
     <>
-      <div className="container pt-3">
+      <div className="container pt-3" style={{backgroundColor:'#f2f5f9'}}>
         <div className="d-flex justify-content-between">
           <span>Search</span>
           <h1>Your Notes</h1>
@@ -47,6 +48,9 @@ function Notes() {
           </Col>
           <Col sm={2}>
             <h5>Category</h5>
+          </Col>
+          <Col sm={3}>
+            <Category setNotes={setNotes} />
           </Col>
         </Row>
         <div>
