@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
 }
 
 code {
@@ -12,7 +13,7 @@ code {
     monospace;
 }
 
-.tab-content {
+#root{
   background-color: #f2f5f9;
   width: 100vw;
   height: 100vh;
@@ -24,4 +25,8 @@ code {
 
 .nav-link {
   color: #495057 !important;
+}
+
+.nav {
+  background-color: white;
 }
