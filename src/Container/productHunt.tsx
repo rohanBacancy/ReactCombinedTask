@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react";
 import { Col, Row } from "reactstrap";
 
 function productHunt() {
-    return (
-        <>
-      <div className="container pt-3" style={{backgroundColor:'#f2f5f9'}}>
+  return (
+    <>
+      <div className="container pt-3">
         <div className="d-flex justify-content-between">
           <h1>Product Hunt</h1>
           <h2>Add a Product</h2>
@@ -17,16 +17,11 @@ function productHunt() {
           <Col sm={2}>
             <h5>Category</h5>
           </Col>
-          <Col sm={3}>
-            dropdown
-          </Col>
+          <Col sm={3}>dropdown</Col>
         </Row>
-        {/* <div> */}
-        {/* <ListNotes notes={notes} editHandler={editHandler} deleteHandler={deleteHandler}/> */}
-        {/* </div> */}
       </div>
     </>
-    )
+  );
 }
 
-export default productHunt
+export default productHunt;
