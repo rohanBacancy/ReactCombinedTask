@@ -25,6 +25,7 @@ function Notes() {
   const editHandler = (id:string) => {
       setOpen(true);
       //Jinesh Edit note by id in the form
+      
   }
 
   useEffect(() => {
