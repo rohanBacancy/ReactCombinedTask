@@ -35,8 +35,8 @@ const Search:React.FC<Props> = ({notes}) => {
             </div>
             <ul>
                 {
-                    searchResults.map(note => (
-                        <li>{note}</li>
+                    searchResults.map((note, i) => (
+                        <li key={i}>{note}</li>
                     ))
                 }
             </ul>
