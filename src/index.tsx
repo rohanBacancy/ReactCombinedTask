@@ -6,10 +6,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <React.Fragment>
     <App />
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.Fragment>,
+  document.getElementById('root')
 );
 
 reportWebVitals();
