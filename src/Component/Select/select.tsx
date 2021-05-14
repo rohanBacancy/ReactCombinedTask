@@ -5,24 +5,24 @@ import Select from "react-select";
 import { Icategory } from "../category";
 
 interface Iprops {
-  name: string;
-  id: string;
-  onChangeCategory: Function;
-  value: Icategory;
-  options: Icategory[];
-  label: string;
+
   disabled: boolean;
+  id: string;
+  name: string;
+  onChangeCategory: Function;
+  options: Icategory[];
   placeholder: string;
+  value: Icategory;
 }
 
 const SelectField: FunctionComponent<Iprops> = ({
-  name,
-  id,
-  onChangeCategory,
-  value,
-  options,
   disabled,
+  id,
+  name,
+  onChangeCategory,
+  options,
   placeholder,
+  value,
 }) => {
   return (
     <Row>

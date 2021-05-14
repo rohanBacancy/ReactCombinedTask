@@ -23,7 +23,9 @@ const Category: FunctionComponent<Iprops> = ({ setNotes }) => {
   const onchangeHandler = (selectedOption: Icategory) => {
     let notes = localStorage.getItem("notes");
     let notesObj = [];
-    if (notes !== null) notesObj = JSON.parse(notes);
+
+    if (notes) notesObj = JSON.parse(notes);
+
     let filteredNotes = notesObj;
     if (selectedOption.value !== "all") {
       filteredNotes = notesObj.filter(
@@ -40,7 +42,6 @@ const Category: FunctionComponent<Iprops> = ({ setNotes }) => {
       onChangeCategory={onchangeHandler}
       value={category}
       options={notesCategory}
-      label="Category"
       disabled={false}
       placeholder="Category"
     />
