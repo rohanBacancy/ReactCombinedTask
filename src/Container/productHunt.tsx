@@ -1,11 +1,28 @@
-import React from 'react'
+import React from "react";
+import { Col, Row } from "reactstrap";
 
 function productHunt() {
-    return (
-        <div>
-            Product Hunt
+  return (
+    <>
+      <div className="container pt-3">
+        <div className="d-flex justify-content-between">
+          <h1>Product Hunt</h1>
+          <h2>Add a Product</h2>
         </div>
-    )
+        <hr />
+        <Row>
+          <Col>
+            <h5>Search</h5>
+          </Col>
+          <Col sm={2}>
+            <h5>Category</h5>
+          </Col>
+          <Col sm={3}>dropdown</Col>
+        </Row>
+      </div>
+    </>
+  );
 }
 
-export default productHunt
+export default productHunt;
+
