@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { TabContent, TabPane, Nav, NavItem, NavLink } from "reactstrap";
+<<<<<<< HEAD
 //import "./App.css";
+=======
+>>>>>>> bb0815fa63be44a3936cc53d6b3379f74a73f36b
 import Notes from "./Container/notes";
+
 import ProductHunt from "./Container/productHunt";
 import MusicalInstruments from "./Container/musicalInstruments";
 import classnames from "classnames";
