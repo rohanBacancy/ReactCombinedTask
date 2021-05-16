@@ -1,7 +1,8 @@
-<<<<<<< HEAD
+
 import React, { useEffect, useState } from 'react';
 import CategoryProduct from '../Components/CategoryProduct';
 import axios from 'axios';
+import { Col, Row } from "reactstrap";
 
 export interface Iproduct {
     id: string;
@@ -12,8 +13,9 @@ export interface Iproduct {
     description: String
 }
 
-function ProductHunt() {
-    const [productData, setProductData] = useState<Array<Iproduct>>([])
+function productHunt() {
+
+  const [productData, setProductData] = useState<Array<Iproduct>>([])
     useEffect(() => {
         axios.get<Iproduct[]>('https://609cc6bd04bffa001792d455.mockapi.io/products')
             .then((response) => {
@@ -25,24 +27,6 @@ function ProductHunt() {
             });
 
     }, [setProductData])
-    return (
-        <>
-            <div>Product Hunt</div>
-            <div className="d-flex flex-row">
-                <span className="mx-3">Category</span>
-                <span className="w-25"><CategoryProduct setProductData={setProductData}  /></span>
-            </div>
-
-        </>
-    )
-}
-
-export default ProductHunt
-=======
-import React from "react";
-import { Col, Row } from "reactstrap";
-
-function productHunt() {
   return (
     <>
       <div className="container pt-3">
@@ -56,7 +40,10 @@ function productHunt() {
             <h5>Search</h5>
           </Col>
           <Col sm={2}>
-            <h5>Category</h5>
+          <div className="d-flex flex-row">
+                <span className="mx-3">Category</span>
+                <span className="w-25"><CategoryProduct setProductData={setProductData}  /></span>
+            </div>
           </Col>
           <Col sm={3}>dropdown</Col>
         </Row>
@@ -67,4 +54,3 @@ function productHunt() {
 
 export default productHunt;
 
->>>>>>> bb0815fa63be44a3936cc53d6b3379f74a73f36b
