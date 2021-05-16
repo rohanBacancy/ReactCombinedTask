@@ -15,10 +15,10 @@ function Notes() {
   const [notes, setNotes] = useState<Array<Inotes>>([]);
   const [open,setOpen] = useState<boolean>(false);
 
-  const localstorageNoteRemover = (id:string) =>
-  {
-    //Function to remove note from local storage
-  }
+  // const localstorageNoteRemover = (id:string) =>
+  // {
+  //   //Function to remove note from local storage
+  // }
 
   const deleteHandler = (id:string) => {
       setNotes(notes.filter(note => note.id !== id));
