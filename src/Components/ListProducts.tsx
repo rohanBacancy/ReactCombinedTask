@@ -4,9 +4,10 @@ import ProductCard from "./ProductCard"
 interface IProps{
     products:IProduct[],
     addReviewHandler: (id:string) => void,
+    openModel: (product:IProduct) => void,
 }
 
-const ListProducts:React.FC<IProps> = ({ products,addReviewHandler }) => {
+const ListProducts:React.FC<IProps> = ({ products,addReviewHandler,openModel }) => {
     return (
         <>
             {
@@ -14,7 +15,8 @@ const ListProducts:React.FC<IProps> = ({ products,addReviewHandler }) => {
                 <ProductCard 
                     key={product.id} 
                     product={product} 
-                    addReviewHandler={addReviewHandler}/>)
+                    addReviewHandler={addReviewHandler}
+                    openModel={openModel}/>)
             }
         </>
     )
