@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "reactstrap";
 import Category from "../Component/category";
-import ListNotes from '../NotebookTask/Components/ListNotes';
-import Search from '../Components/Search';
+import ListNotes from "../NotebookTask/Components/ListNotes";
+import Search from "../Components/Search";
 
 export interface Inotes {
   id: string;
@@ -37,7 +37,7 @@ function Notes() {
     <>
       <div className="container pt-3" style={{ backgroundColor: "#f2f5f9" }}>
         <div className="d-flex justify-content-between">
-          <Search notes={notes}/>
+          <Search setNotes={setNotes} />
           <h1>Your Notes</h1>
           <div>Add a Note</div>
         </div>

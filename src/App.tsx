@@ -9,7 +9,6 @@ import { BrowserRouter } from "react-router-dom";
 
 function App() {
   const [activeTab, setActiveTab] = useState("1");
-
   const toggle = (tab: string) => {
     if (activeTab !== tab) setActiveTab(tab);
   };
