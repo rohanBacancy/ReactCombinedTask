@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import SelectField from "../Component/Select/select";
-import { Iproduct } from '../Container/productHunt'
+import { Iproduct } from '../Container/productHunt';
 import axios from 'axios';
 
 const pCategories = [
@@ -47,7 +47,7 @@ const CategoryProduct: React.FC<Props> = ({setProductData}) => {
                 productList = res.data
             })
             .catch(err => {
-                alert(err)
+                console.log(err)
             })
     }, [onchangeHandler])
 

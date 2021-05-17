@@ -27,7 +27,12 @@ function Notes() {
   const editHandler = (id:string) => {
       setOpen(true);
       //Jinesh Edit note by id in the form
-      
+
+  }
+
+  const fetchData = () => {
+    let notes = localStorage.getItem("notes");
+    if (notes) setNotes(JSON.parse(notes));
   }
 
   useEffect(() => {
