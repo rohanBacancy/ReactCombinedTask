@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Col, Row } from "reactstrap";
 import Category from "../Component/category";
 import ListNotes from '../NotebookTask/Components/ListNotes';
+import Search from '../Components/Search';
 
 export interface Inotes {
   id: string;
@@ -26,6 +27,7 @@ function Notes() {
   const editHandler = (id:string) => {
       setOpen(true);
       //Jinesh Edit note by id in the form
+      
   }
 
   useEffect(() => {
@@ -37,7 +39,7 @@ function Notes() {
     <>
       <div className="container pt-3" style={{backgroundColor:'#f2f5f9'}}>
         <div className="d-flex justify-content-between">
-          <span>Search</span>
+          <Search notes={notes}/>
           <h1>Your Notes</h1>
           <div>Add a Note</div>
         </div>

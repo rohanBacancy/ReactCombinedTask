@@ -1,7 +1,7 @@
 import axios from 'axios';
 const productURL:string = process.env.REACT_APP_PRODUCT_URI || ""
 
-interface IProduct{
+export interface IProduct{
     id:string,
     userID:string,
     categoryID:string,
@@ -10,7 +10,7 @@ interface IProduct{
     description:string,
 }
 
-interface IReview{
+export interface IReview{
     userID:string,
     date:string,
     review:string,
@@ -22,3 +22,8 @@ export const addProduct = (product:IProduct) => {
     .catch(err => alert("There was an error while adding the product"))
 }
 
+export const addReview = (product:IProduct) => {
+    axios.put(productURL+`${product.id}`,product)
+    .then(res => alert("Reviews added successfully"))
+    .catch(err => alert("There was an error while adding the product"))
+}
