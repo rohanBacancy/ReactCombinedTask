@@ -1,11 +1,29 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import ListProducts from '../Components/ListProducts';
+import { IProduct } from '../helper'
+const PRODUCT_URL:string = process.env.REACT_APP_PRODUCT_URI || "https://609cc6bd04bffa001792d455.mockapi.io/products/"
 
-function productHunt() {
+const ProductHunt:React.FC = () => {
+
+    const [products,setProducts] = useState<IProduct[]>([]);
+
+    useEffect(() => {
+        axios.get(PRODUCT_URL)
+        .then(res => setProducts(res.data))
+        .catch(err => alert(err))
+    },[])
+
+    const addReviewHandler = (productID:string) => {
+        console.log("Complete this function")
+    }   
+
     return (
         <div>
-            Product Hunt
+            <h1>Product hunt</h1>
+            <ListProducts products={products} addReviewHandler={addReviewHandler}/>
         </div>
     )
 }
 
-export default productHunt
+export default ProductHunt
