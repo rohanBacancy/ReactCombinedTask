@@ -12,7 +12,7 @@ const ListNotes:React.FC<IProps> = ({ notes,editHandler,deleteHandler }) => {
         <>
             {
                 notes.map(note => 
-                <NoteCard 
+                <NoteCard
                     key={note.id} 
                     note={note} 
                     editHandler={editHandler} 
