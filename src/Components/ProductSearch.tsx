@@ -3,7 +3,6 @@ import { Button, Input } from 'reactstrap'
 import { Iproduct } from '../Container/productHunt';
 import axios from 'axios';
 interface Props {
-
     setProductData:  React.Dispatch<React.SetStateAction<Iproduct[]>>;
 }
 
@@ -17,7 +16,6 @@ const ProductSearch: React.FC<Props> = ({setProductData}) => {
     useEffect(() => {
         axios.get<Iproduct[]>('https://609cc6bd04bffa001792d455.mockapi.io/products')
       .then((response) => {
-        console.log('res', response.data);
         productData = response.data
       })
 

@@ -43,7 +43,6 @@ const CategoryProduct: React.FC<Props> = ({setProductData}) => {
     useEffect(() => {
         axios.get('https://609cc6bd04bffa001792d455.mockapi.io/products')
             .then(res => {
-                console.log('response', res.data)
                 productList = res.data
             })
             .catch(err => {
