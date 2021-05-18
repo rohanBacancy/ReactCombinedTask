@@ -5,6 +5,7 @@ import Select from "react-select";
 import { Icategory } from "../category";
 
 interface Iprops {
+
   disabled: boolean;
   id: string;
   name: string;
