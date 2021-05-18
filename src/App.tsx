@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { TabContent, TabPane, Nav, NavItem, NavLink } from "reactstrap";
-
-//import "./App.css";
+import "./App.css";
 
 import Notes from "./Container/notes";
 
