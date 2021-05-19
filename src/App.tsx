@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { TabContent, TabPane, Nav, NavItem, NavLink } from "reactstrap";
 import Notes from "./Container/notes";
-
-import ProductHunt from "./Container/productHunt";
+import ProductHuntApp from "./App/ProductHuntApp";
 import MusicalInstruments from "./Container/musicalInstruments";
 import classnames from "classnames";
+import { AuthProvider } from "./Hooks/useAuth";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   const [activeTab, setActiveTab] = useState("1");
-
   const toggle = (tab: string) => {
     if (activeTab !== tab) setActiveTab(tab);
   };
@@ -55,7 +55,11 @@ function App() {
           <MusicalInstruments />
         </TabPane>
         <TabPane tabId="3">
-          <ProductHunt />
+          <BrowserRouter>
+            <AuthProvider>
+              <ProductHuntApp />
+            </AuthProvider>
+          </BrowserRouter>
         </TabPane>
       </TabContent>
     </div>

@@ -1,9 +1,12 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React,  { useEffect, useState } from "react";
+import { Button, Col, Row } from "reactstrap";
+import { useAuth } from "../Hooks/useAuth";
+import { removeItemFromStorage } from "../helper";
 import ListProducts from "../Components/ListProducts";
 import ProductDetails from "../Components/ProductDetails";
 import { IProduct } from "../helper";
-import { Col, Row } from "reactstrap";
+import axios from 'axios';
+
 const PRODUCT_URL: string =
   process.env.REACT_APP_PRODUCT_URI ||
   "https://609cc6bd04bffa001792d455.mockapi.io/products/";
@@ -12,6 +15,12 @@ const ProductHunt: React.FC = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [modelProduct, setModelProduct] = useState<IProduct>();
   const [open, setOpen] = useState<boolean>(false);
+
+  const auth = useAuth();
+  const logoutHandler = () => {
+    removeItemFromStorage("productHuntUserId");
+    auth.logout();
+  };
 
   useEffect(() => {
     axios
@@ -38,6 +47,9 @@ const ProductHunt: React.FC = () => {
       <div className="d-flex justify-content-between">
         <h1>Product Hunt</h1>
         <h2>Add a Product</h2>
+        <Button color="danger" onClick={logoutHandler}>
+            Log Out
+          </Button>
       </div>
       <hr />
       <Row>
