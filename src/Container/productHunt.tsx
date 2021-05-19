@@ -1,11 +1,11 @@
-import React,  { useEffect, useState } from "react";
 import { Button, Col, Row } from "reactstrap";
 import { useAuth } from "../Hooks/useAuth";
 import { removeItemFromStorage } from "../helper";
 import ListProducts from "../Components/ListProducts";
 import ProductDetails from "../Components/ProductDetails";
 import { IProduct } from "../helper";
-import axios from 'axios';
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const PRODUCT_URL: string =
   process.env.REACT_APP_PRODUCT_URI ||
@@ -48,8 +48,8 @@ const ProductHunt: React.FC = () => {
         <h1>Product Hunt</h1>
         <h2>Add a Product</h2>
         <Button color="danger" onClick={logoutHandler}>
-            Log Out
-          </Button>
+          Log Out
+        </Button>
       </div>
       <hr />
       <Row>
