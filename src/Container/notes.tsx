@@ -16,10 +16,6 @@ function Notes() {
   const [open, setOpen] = useState<boolean>(false);
 
 
-  // const localstorageNoteRemover = (id:string) =>
-  // {
-  //   //Function to remove note from local storage
-  // }
   const localstorageNoteRemover = (id: string) => {
     //Function to remove note from local storage
   };
@@ -29,10 +25,17 @@ function Notes() {
     setNotes(notes.filter((note) => note.id !== id));
   };
 
+
+  const fetchData = () => {
+    let notes = localStorage.getItem("notes");
+    if (notes) setNotes(JSON.parse(notes));
+  }
+
   const editHandler = (id: string) => {
     setOpen(true);
     //Jinesh Edit note by id in the form
   };
+
 
   useEffect(() => {
     let notes = localStorage.getItem("notes");

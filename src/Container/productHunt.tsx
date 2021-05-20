@@ -51,6 +51,7 @@ const ProductHunt: React.FC = () => {
         <Button color="danger" onClick={logoutHandler}>
           Log Out
         </Button>
+
       </div>
       <hr />
       <Row>
@@ -78,6 +79,5 @@ const ProductHunt: React.FC = () => {
       </Row>
     </div>
   );
-};
-
+}
 export default ProductHunt;

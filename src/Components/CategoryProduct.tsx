@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import SelectField from "../Component/Select/select";
-import { Iproduct } from '../Container/productHunt'
+import { Iproduct } from '../Container/productHunt';
 import axios from 'axios';
 
 const pCategories = [
@@ -43,11 +43,10 @@ const CategoryProduct: React.FC<Props> = ({setProductData}) => {
     useEffect(() => {
         axios.get('https://609cc6bd04bffa001792d455.mockapi.io/products')
             .then(res => {
-                console.log('response', res.data)
                 productList = res.data
             })
             .catch(err => {
-                alert(err)
+                console.log(err)
             })
     }, [onchangeHandler])
 
