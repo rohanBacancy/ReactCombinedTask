@@ -39,3 +39,4 @@ const Search: React.FC<Props> = ({ setNotes }) => {
 };
 
 export default Search;
+
