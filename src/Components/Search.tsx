@@ -1,48 +1,42 @@
-import React, { useEffect, useState } from 'react'
-import { Button, Input } from 'reactstrap'
-import {Inotes} from '../Container/notes';
+import React, { useEffect, useState } from "react";
+import { Input } from "reactstrap";
+import { Inotes } from "../Container/notes";
 
 interface Props {
-    notes: Inotes[]
+  setNotes: React.Dispatch<React.SetStateAction<Inotes[]>>;
 }
 
-const Search:React.FC<Props> = ({notes}) => {
+const Search: React.FC<Props> = ({ setNotes }) => {
+  const [searchTerm, setSearchTerm] = useState("");
 
-    const [searchTerm, setSearchTerm] = useState("")
-    const [searchResults, setSearchResults] = useState<Array<Inotes>>([]);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchTerm(e.target.value)
-    }
+  let notes = localStorage.getItem("notes");
+  let notesObj: Inotes[] = [];
+  if (notes) notesObj = JSON.parse(notes);
 
-    useEffect(() => {
-        const results = notes.filter(note => note.title.toLowerCase().includes(searchTerm))
-        setSearchResults([...results])
-    }, [searchTerm,notes])
+  useEffect(() => {
+    const results = notesObj.filter((note) =>
+      note.title.toLowerCase().includes(searchTerm)
+    );
+    setNotes([...results]);
+  }, [searchTerm]);
 
-    return (
-        <>
-            <div className="d-flex flex-row">
-                <Input
-                    className="w-25 mx-2"
-                    type="text"
-                    placeholder="Search notes"
-                    name="search"
-                    value={searchTerm}
-                    onChange={handleChange}
-                />
-                <Button type="submit"><i className="fa fa-search" aria-hidden="true"></i></Button>
-            </div>
-            <ul>
-                {
-                    searchResults.map(note => (
-                        <li>{note}</li>
-                    ))
-                }
-            </ul>
-        </>
+  return (
+    <>
+        <Input
+          className="w-25 mx-2"
+          type="text"
+          placeholder="Search notes"
+          name="search"
+          value={searchTerm}
+          onChange={handleChange}
+        />
+    </>
+  );
+};
 
-    )
-}
+export default Search;
 
-export default Search

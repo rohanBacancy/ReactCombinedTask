@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "reactstrap";
 import Category from "../Component/category";
-import ListNotes from '../NotebookTask/Components/ListNotes';
-import Search from '../Components/Search';
+import ListNotes from "../NotebookTask/Components/ListNotes";
+import Search from "../Components/Search";
 
 export interface Inotes {
   id: string;
@@ -13,27 +13,29 @@ export interface Inotes {
 
 function Notes() {
   const [notes, setNotes] = useState<Array<Inotes>>([]);
-  const [open,setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
 
-  // const localstorageNoteRemover = (id:string) =>
-  // {
-  //   //Function to remove note from local storage
-  // }
 
-  const deleteHandler = (id:string) => {
-      setNotes(notes.filter(note => note.id !== id));
-  }
+  const localstorageNoteRemover = (id: string) => {
+    //Function to remove note from local storage
+  };
 
-  const editHandler = (id:string) => {
-      setOpen(true);
-      //Jinesh Edit note by id in the form
 
-  }
+  const deleteHandler = (id: string) => {
+    setNotes(notes.filter((note) => note.id !== id));
+  };
+
 
   const fetchData = () => {
     let notes = localStorage.getItem("notes");
     if (notes) setNotes(JSON.parse(notes));
   }
+
+  const editHandler = (id: string) => {
+    setOpen(true);
+    //Jinesh Edit note by id in the form
+  };
+
 
   useEffect(() => {
     let notes = localStorage.getItem("notes");
@@ -42,9 +44,9 @@ function Notes() {
 
   return (
     <>
-      <div className="container pt-3" style={{backgroundColor:'#f2f5f9'}}>
+      <div className="container pt-3" style={{ backgroundColor: "#f2f5f9" }}>
         <div className="d-flex justify-content-between">
-          <Search notes={notes}/>
+          <Search setNotes={setNotes} />
           <h1>Your Notes</h1>
           <div>Add a Note</div>
         </div>
@@ -61,7 +63,11 @@ function Notes() {
           </Col>
         </Row>
         <div>
-        <ListNotes notes={notes} editHandler={editHandler} deleteHandler={deleteHandler}/>
+          <ListNotes
+            notes={notes}
+            editHandler={editHandler}
+            deleteHandler={deleteHandler}
+          />
         </div>
       </div>
     </>

@@ -22,8 +22,7 @@ const Category: FunctionComponent<Iprops> = ({ setNotes }) => {
   const [category, setCategory] = useState<Icategory>(notesCategory[0]);
   const onchangeHandler = (selectedOption: Icategory) => {
     let notes = localStorage.getItem("notes");
-    let notesObj = [];
-
+    let notesObj : Inotes[] = [];
     if (notes) notesObj = JSON.parse(notes);
 
     let filteredNotes = notesObj;

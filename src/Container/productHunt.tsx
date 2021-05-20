@@ -1,66 +1,83 @@
 
-import React, { useEffect, useState } from 'react';
-import CategoryProduct from '../Components/CategoryProduct';
-import ProductSearch from '../Components/ProductSearch';
-import axios from 'axios';
-import { Col, Row } from "reactstrap";
-import Search from '../Components/Search';
+import { Button, Col, Row } from "reactstrap";
+import { useAuth } from "../Hooks/useAuth";
+import { removeItemFromStorage } from "../helper";
+import ListProducts from "../Components/ListProducts";
+import ProductDetails from "../Components/ProductDetails";
+import { IProduct } from "../helper";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-export interface Iproduct {
-  id: string;
-  userID: string;
-  categoryID: string;
-  productTitle: string;
-  reviews: Object[];
-  description: String
-}
+const PRODUCT_URL: string =
+  process.env.REACT_APP_PRODUCT_URI ||
+  "https://609cc6bd04bffa001792d455.mockapi.io/products/";
 
-function ProductHunt() {
+const ProductHunt: React.FC = () => {
+  const [products, setProducts] = useState<IProduct[]>([]);
+  const [modelProduct, setModelProduct] = useState<IProduct>();
+  const [open, setOpen] = useState<boolean>(false);
 
-  const [productData, setProductData] = useState<Array<Iproduct>>([])
+  const auth = useAuth();
+  const logoutHandler = () => {
+    removeItemFromStorage("productHuntUserId");
+    auth.logout();
+  };
 
   useEffect(() => {
-    axios.get<Iproduct[]>('https://609cc6bd04bffa001792d455.mockapi.io/products')
-      .then((response) => {
-        console.log('res', response.data);
-        setProductData(response.data)
-      })
+    axios
+      .get(PRODUCT_URL)
+      .then((res) => setProducts(res.data))
+      .catch((err) => alert(err));
+  }, []);
 
+  const addReviewHandler = (productID: string) => {
+    console.log("Complete this function");
+  };
 
-  }, [setProductData])
+  const openModel = (product: IProduct) => {
+    setModelProduct(product);
+    setOpen(true);
+  };
 
-
+  const closeModel = () => {
+    setOpen(false);
+  };
 
   return (
-    <>
-      <div className="container pt-3">
-        <div className="d-flex justify-content-between">
-          <h1>Product Hunt</h1>
-          <h2>Add a Product</h2>
-        </div>
-        <hr />
-        <Row>
-          <Col>
-            <h5><ProductSearch setProductData={setProductData} /></h5>
-          </Col>
-          <Col sm={1}>
-            Category
-          </Col>
-          <Col sm={2}><CategoryProduct setProductData={setProductData} /></Col>
-        </Row>
-        {
-          productData.map(product => (
-            <ul>
-              <li>{product.id}</li>
-              <li>{product.productTitle}</li>
-              <li>{product.description}</li>
-            </ul>
-          ))
-        }
+    <div className="container pt-3">
+      <div className="d-flex justify-content-between">
+        <h1>Product Hunt</h1>
+        <h2>Add a Product</h2>
+        <Button color="danger" onClick={logoutHandler}>
+          Log Out
+        </Button>
+
       </div>
-    </>
+      <hr />
+      <Row>
+        <Col>
+          <h5>Search</h5>
+        </Col>
+        <Col sm={2}>
+          <h5>Category</h5>
+        </Col>
+        <Col sm={3}>dropdown</Col>
+      </Row>
+      <Row>
+        <ListProducts
+          products={products}
+          addReviewHandler={addReviewHandler}
+          openModel={openModel}
+        />
+        {modelProduct && (
+          <ProductDetails
+            product={modelProduct}
+            open={open}
+            closeModel={closeModel}
+          />
+        )}
+      </Row>
+    </div>
   );
 }
-
 export default ProductHunt;
-
