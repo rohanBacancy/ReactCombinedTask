@@ -1,4 +1,3 @@
-
 import { Button, Col, Row } from "reactstrap";
 import { useAuth } from "../Hooks/useAuth";
 import { removeItemFromStorage } from "../helper";
@@ -7,6 +6,8 @@ import ProductDetails from "../Components/ProductDetails";
 import { IProduct } from "../helper";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Search from "../Components/ProductSearch";
+import Category from "../Components/CategoryProduct";
 
 const PRODUCT_URL: string =
   process.env.REACT_APP_PRODUCT_URI ||
@@ -51,17 +52,15 @@ const ProductHunt: React.FC = () => {
         <Button color="danger" onClick={logoutHandler}>
           Log Out
         </Button>
-
       </div>
       <hr />
       <Row>
         <Col>
-          <h5>Search</h5>
+          <Search setProductData={setProducts} />
         </Col>
-        <Col sm={2}>
-          <h5>Category</h5>
+        <Col sm={3}>
+          <Category setProductData={setProducts} />
         </Col>
-        <Col sm={3}>dropdown</Col>
       </Row>
       <Row>
         <ListProducts
@@ -79,5 +78,5 @@ const ProductHunt: React.FC = () => {
       </Row>
     </div>
   );
-}
+};
 export default ProductHunt;
