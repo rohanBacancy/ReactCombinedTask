@@ -1,8 +1,8 @@
 import React, { FC, lazy } from "react";
 import { Switch, Route, Redirect, useLocation } from "react-router-dom";
 
-const Login = lazy(() => import("../Component/Login"));
-const Register = lazy(() => import("../Component/register"));
+const Login = lazy(() => import("../Components/Login"));
+const Register = lazy(() => import("../Components/register"));
 
 const UnAuthorisedApp: FC = () => {
   const location = useLocation();

@@ -1,3 +1,6 @@
+import axios from 'axios';
+const productURL:string = process.env.REACT_APP_PRODUCT_URI || ""
+
 export const getSentenceFromCamelCase = (message: string): string => {
   let pattern = /[A-Za-z]/g;
   let messages = message.match(pattern);
@@ -51,15 +54,13 @@ export const getItemFromStorage = (key: string) => {
   return item ? JSON.parse(item) : null;
 };
 
-export const setItemInStorage = (name: string, data: string) => {
+export const setItemInStorage = (name: string, data: any) => {
   window.localStorage.setItem(name, data);
 };
 
 export const removeItemFromStorage = (name: string) => {
   window.localStorage.removeItem(name);
 };
-import axios from 'axios';
-const productURL:string = process.env.REACT_APP_PRODUCT_URI || ""
 
 export interface IProduct{
     id:string,
