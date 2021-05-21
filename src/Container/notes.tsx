@@ -25,6 +25,7 @@ function Notes() {
     setNote(undefined);
   };
 
+
   const deleteHandler = (id: string) => {
     setNotes(notes.filter((note) => note.id !== id));
     setItemInStorage(
@@ -33,11 +34,18 @@ function Notes() {
     );
   };
 
+
+  const fetchData = () => {
+    let notes = localStorage.getItem("notes");
+    if (notes) setNotes(JSON.parse(notes));
+  }
+
   const editHandler = (id: string) => {
     setOpen(true);
     let note = notes.find((note) => note.id === id);
     setNote(note);
   };
+
 
   useEffect(() => {
     let notes = localStorage.getItem("notes");
