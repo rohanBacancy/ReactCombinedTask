@@ -11,7 +11,7 @@ interface Iprops {
   name: string;
   onChangeCategory: Function;
   options: Icategory[];
-  placeholder: string;
+  placeholder?: string;
   value: Icategory;
 }
 

@@ -7,6 +7,7 @@ export const notesCategory = [
   { value: "all", label: "All" },
   { value: "education", label: "Education" },
   { value: "entertainment", label: "Entertainment" },
+  { value: "productivity", label: "Productivity" },
 ];
 
 export interface Icategory {
@@ -22,13 +23,13 @@ const Category: FunctionComponent<Iprops> = ({ setNotes }) => {
   const [category, setCategory] = useState<Icategory>(notesCategory[0]);
   const onchangeHandler = (selectedOption: Icategory) => {
     let notes = localStorage.getItem("notes");
-    let notesObj : Inotes[] = [];
+    let notesObj: Inotes[] = [];
     if (notes) notesObj = JSON.parse(notes);
 
     let filteredNotes = notesObj;
     if (selectedOption.value !== "all") {
       filteredNotes = notesObj.filter(
-        (note: Inotes) => note.category === selectedOption.value
+        (note: Inotes) => note.category.value === selectedOption.value
       );
     }
     setNotes(filteredNotes);

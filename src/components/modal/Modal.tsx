@@ -1,34 +1,28 @@
-import React, { useState} from 'react'
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
-
+import React from "react";
+import { Modal, ModalHeader, ModalBody } from "reactstrap";
 
 interface Props {
-    label: string,
-    form: JSX.Element
+  buttonTitle: string;
+  label: string;
+  form: JSX.Element;
+  modal: boolean;
+  toggle: () => void;
 }
 
-const ModalComponent: React.FC<Props> = (props: any) => {
-
-    const [modal, setModal] = useState<boolean>(false);
-
-    const toggle = ():void => setModal(!modal);
-    
-    let bottombar = (
-        <>
-            <Button onClick={toggle} color="danger">Cancel</Button>
-        </>
-    )
-    
-      return (
-        <div>
-        <Button outline color="primary" onClick={toggle}>Open Modal</Button>
-        <Modal isOpen={modal} toggle={toggle} centered>
-        <ModalHeader>{props.label}</ModalHeader>
-        <ModalBody>{props.form}</ModalBody>
-        {/* <ModalFooter>{bottombar}</ModalFooter> */}
-        </Modal>
-        </div>
-      );
-}
+const ModalComponent: React.FC<Props> = ({
+  label,
+  form,
+  modal,
+  toggle,
+}) => {
+  return (
+    <div>
+      <Modal isOpen={modal} toggle={toggle} centered>
+        <ModalHeader toggle={toggle}>{label}</ModalHeader>
+        <ModalBody>{form}</ModalBody>
+      </Modal>
+    </div>
+  );
+};
 
 export default ModalComponent;

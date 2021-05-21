@@ -1,31 +1,42 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row } from "reactstrap";
-import Category from "../Component/category";
-import ListNotes from "../NotebookTask/Components/ListNotes";
+import { Button, Col, Row } from "reactstrap";
+import Category from "../Components/category";
+import ListNotes from "../Components/ListNotes";
 import Search from "../Components/Search";
+import AddNote from "../Components/Forms/AddNoteForm";
+import Modal from "../Components/modal/Modal";
+import { setItemInStorage } from "../helper";
+import { Icategory } from "../Components/category";
 
 export interface Inotes {
   id: string;
   title: string;
   description: string;
-  category: string;
+  category: Icategory;
 }
 
 function Notes() {
   const [notes, setNotes] = useState<Array<Inotes>>([]);
-  const [open, setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState(false);
+  const [note, setNote] = useState<Inotes | undefined>();
 
-  const localstorageNoteRemover = (id: string) => {
-    //Function to remove note from local storage
+  const toggle = (): void => {
+    setOpen(!open);
+    setNote(undefined);
   };
 
   const deleteHandler = (id: string) => {
     setNotes(notes.filter((note) => note.id !== id));
+    setItemInStorage(
+      "notes",
+      JSON.stringify(notes.filter((note) => note.id !== id))
+    );
   };
 
   const editHandler = (id: string) => {
     setOpen(true);
-    //Jinesh Edit note by id in the form
+    let note = notes.find((note) => note.id === id);
+    setNote(note);
   };
 
   useEffect(() => {
@@ -35,19 +46,26 @@ function Notes() {
 
   return (
     <>
+      <Modal
+        modal={open}
+        toggle={toggle}
+        buttonTitle="Add Note"
+        label="Add a Note"
+        form={<AddNote note={note} setNotes={setNotes} toggle={toggle} />}
+      />
       <div className="container pt-3" style={{ backgroundColor: "#f2f5f9" }}>
         <div className="d-flex justify-content-between">
-          <Search setNotes={setNotes} />
           <h1>Your Notes</h1>
-          <div>Add a Note</div>
+          <div>
+            <Button color="primary" onClick={toggle}>
+              Add Note
+            </Button>
+          </div>
         </div>
         <hr />
         <Row>
           <Col>
-            <h2>Notes List</h2>
-          </Col>
-          <Col sm={2}>
-            <h5>Category</h5>
+            <Search setNotes={setNotes} />
           </Col>
           <Col sm={3}>
             <Category setNotes={setNotes} />

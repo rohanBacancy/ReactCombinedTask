@@ -27,7 +27,7 @@ const Search: React.FC<Props> = ({ setNotes }) => {
   return (
     <>
         <Input
-          className="w-25 mx-2"
+          className="w-25"
           type="text"
           placeholder="Search notes"
           name="search"
